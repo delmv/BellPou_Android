@@ -3,15 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/delmo/Desktop/B3Q1/Android/BellPou/app/src/main/res/drawable-v24/closed_trash.xml" value="0.5661458333333333" />
+        <entry key="..\:/Users/delmo/Desktop/B3Q1/Android/BellPou/app/src/main/res/drawable-v24/ic_belpou.xml" value="0.21875" />
+        <entry key="..\:/Users/delmo/Desktop/B3Q1/Android/BellPou/app/src/main/res/drawable-v24/opened_trash.xml" value="0.5661458333333333" />
+        <entry key="..\:/Users/delmo/Desktop/B3Q1/Android/BellPou/app/src/main/res/drawable-v24/rectangle.xml" value="0.3416666666666667" />
         <entry key="..\:/Users/delmo/Desktop/B3Q1/Android/BellPou/app/src/main/res/layout/activity_logged.xml" value="0.3625" />
-        <entry key="..\:/Users/delmo/Desktop/B3Q1/Android/BellPou/app/src/main/res/layout/activity_not_logged.xml" value="0.20260416666666667" />
-        <entry key="..\:/Users/delmo/Desktop/B3Q1/Android/BellPou/app/src/main/res/layout/fragment_login.xml" value="0.33" />
-        <entry key="..\:/Users/delmo/Desktop/B3Q1/Android/BellPou/app/src/main/res/layout/fragment_maps.xml" value="0.3625" />
-        <entry key="..\:/Users/delmo/Desktop/B3Q1/Android/BellPou/app/src/main/res/layout/fragment_register.xml" value="0.3625" />
-        <entry key="..\:/Users/delmo/Desktop/B3Q1/Android/BellPou/app/src/main/res/layout/register_line.xml" value="0.3625" />
-        <entry key="..\:/Users/delmo/Desktop/B3Q1/Android/BellPou/app/src/main/res/layout/sample.xml" value="0.20260416666666667" />
-        <entry key="..\:/Users/delmo/Desktop/B3Q1/Android/BellPou/app/src/main/res/layout/sampleconstraint.xml" value="0.3625" />
-        <entry key="..\:/Users/delmo/Desktop/B3Q1/Android/BellPou/app/src/main/res/menu/navigation_not_logged.xml" value="0.20260416666666667" />
+        <entry key="..\:/Users/delmo/Desktop/B3Q1/Android/BellPou/app/src/main/res/layout/activity_main.xml" value="0.3625" />
+        <entry key="..\:/Users/delmo/Desktop/B3Q1/Android/BellPou/app/src/main/res/layout/constraint_example.xml" value="0.3255208333333333" />
+        <entry key="..\:/Users/delmo/Desktop/B3Q1/Android/BellPou/app/src/main/res/layout/fragment_login.xml" value="0.3625" />
+        <entry key="..\:/Users/delmo/Desktop/B3Q1/Android/BellPou/app/src/main/res/layout/fragment_maps.xml" value="0.3255208333333333" />
+        <entry key="..\:/Users/delmo/Desktop/B3Q1/Android/BellPou/app/src/main/res/layout/fragment_profile.xml" value="0.3953125" />
+        <entry key="..\:/Users/delmo/Desktop/B3Q1/Android/BellPou/app/src/main/res/layout/fragment_rewards.xml" value="0.5" />
+        <entry key="..\:/Users/delmo/Desktop/B3Q1/Android/BellPou/app/src/main/res/layout/item_reward.xml" value="0.5211038961038961" />
+        <entry key="..\:/Users/delmo/Desktop/B3Q1/Android/BellPou/app/src/main/res/layout/profile_line.xml" value="0.1" />
+        <entry key="..\:/Users/delmo/Desktop/B3Q1/Android/BellPou/app/src/main/res/layout/register_line.xml" value="0.20260416666666667" />
       </map>
     </option>
   </component>

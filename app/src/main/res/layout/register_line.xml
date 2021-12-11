@@ -1,31 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/register_first_name_text"
+    <data>
+        <import type="android.text.InputType" />
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        <variable
+            name="fieldName"
+            type="java.lang.String" />
 
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/register_first_name"
-        app:layout_constraintBottom_toBottomOf="@id/register_first_name"
+        <variable
+            name="fieldHint"
+            type="java.lang.String" />
 
+        <variable
+            name="inputType"
+            type="java.lang.String" />
+    </data>
 
-        android:text="@string/register_first_name_text" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/register_first_name"
+        <TextView
+            android:id="@+id/field_title"
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
-        app:layout_constraintStart_toEndOf="@id/register_first_name_text"
-        app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
 
-        android:hint="@string/register_first_name_hint" />
+            android:text="@{fieldName}" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <EditText
+            android:id="@+id/field"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/field_title"
+
+            android:hint="@{fieldHint}"
+            android:inputType='@{inputType.equals(`text`) ? InputType.TYPE_CLASS_TEXT : inputType.equals(`date`) ? InputType.TYPE_CLASS_DATETIME : inputType.equals(`mail`) ? InputType.TYPE_TEXT_VARIATION_WEB_EMAIL_ADDRESS : InputType.TYPE_TEXT_VARIATION_WEB_PASSWORD }' />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
