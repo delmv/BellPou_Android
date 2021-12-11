@@ -15,7 +15,6 @@ class RewardsRepository {
         try {
             val response = call.execute()
 
-            println("wtf")
 
             return response.body() ?: throw APIUnknownException(
                 App.applicationContext().getString(R.string.api_unknown_error)
