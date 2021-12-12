@@ -11,7 +11,6 @@ class RewardsViewHolder(
 ): RecyclerView.ViewHolder(containerView) {
 
     val brandNameView: TextView by lazy { containerView.findViewById(R.id.box_brand) }
-    val rewardDescriptionView: TextView by lazy { containerView.findViewById(R.id.box_description) }
     val costView: TextView by lazy { containerView.findViewById(R.id.box_cost) }
 
 }

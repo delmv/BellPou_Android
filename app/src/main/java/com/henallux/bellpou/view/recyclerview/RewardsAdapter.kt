@@ -18,7 +18,6 @@ class RewardsAdapter(private var rewards: List<Reward>): RecyclerView.Adapter<Re
         val reward = rewards[position]
 
         holder.brandNameView.text = reward.nameEN
-        holder.rewardDescriptionView.text = reward.descriptionEN
         holder.costView.text = reward.throinsCost.toString()
     }
 

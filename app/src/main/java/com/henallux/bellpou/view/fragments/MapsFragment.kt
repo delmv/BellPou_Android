@@ -1,6 +1,7 @@
 package com.henallux.bellpou.view.fragments
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import androidx.fragment.app.Fragment
@@ -13,6 +14,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModel
+import androidx.navigation.fragment.findNavController
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -26,6 +28,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.henallux.bellpou.App
 import com.henallux.bellpou.R
 import com.henallux.bellpou.exception.APIConnectionFailedException
+import com.henallux.bellpou.view.activities.QRScanActivity
 import com.henallux.bellpou.viewmodel.MapsViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -59,7 +62,16 @@ class MapsFragment : Fragment() {
             view.findViewById<FloatingActionButton>(R.id.scanQR).visibility = View.VISIBLE
         }
 
+        view.findViewById<FloatingActionButton>(R.id.scanQR).setOnClickListener {
+            scanQRButtonAction()
+        }
+
         return view
+    }
+
+    private fun scanQRButtonAction() {
+        val intent = Intent(activity, QRScanActivity::class.java)
+        activity ?.startActivity(intent)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
