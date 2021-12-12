@@ -18,7 +18,6 @@ class UserDBRepository {
         dao.insertUser(userEntity)
     }
 
-
     // Tester ce qu'il se passe s'il n'y a aucun utilisateur dans la DB
     fun getUser(): LoggedUser {
 
@@ -32,5 +31,14 @@ class UserDBRepository {
 
     companion object {
         private val dao = BellPouDBImpl.getBellPouDao()
+    }
+
+    fun removeUser() {
+        val user = dao.getUser()
+
+        if (user == null)
+            throw(NoUserInDBException(App.applicationContext().getString(R.string.no_user_in_db)))
+
+        dao.deleteUserByEmail(user.email)
     }
 }

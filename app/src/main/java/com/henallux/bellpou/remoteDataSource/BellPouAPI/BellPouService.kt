@@ -10,7 +10,7 @@ class BellPouService {
     companion object {
         private fun createConnectionToApi(): Retrofit {
                 return Retrofit.Builder()
-                    .baseUrl("http://192.168.0.111:3001/")
+                    .baseUrl("http://192.168.1.60:3001/")
                     .addConverterFactory(MoshiConverterFactory.create())
                     .build()
         }

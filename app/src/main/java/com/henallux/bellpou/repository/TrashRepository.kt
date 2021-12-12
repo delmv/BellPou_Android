@@ -26,4 +26,6 @@ class TrashRepository {
             throw APIUnknownException(App.applicationContext().getString(R.string.api_unknown_error))
         }
     }
+
+
 }

@@ -9,6 +9,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.lang.Exception
 
 class ProfileViewModel: ViewModel() {
     var user = MutableLiveData<User>()
@@ -21,6 +22,14 @@ class ProfileViewModel: ViewModel() {
             withContext(Dispatchers.Main) {
                 user.value = fetchedUser
             }
+        }
+    }
+
+    fun disconnectUser() {
+        try {
+            UserDBRepository().removeUser()
+        } catch (e: Exception) {
+            throw e
         }
     }
 }

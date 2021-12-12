@@ -55,6 +55,7 @@
     <string name="password_empty">You must enter a password</string>
     <string name="password_no_match">Both passwords should be equal</string>
     <string name="no_user_in_db">There is no user in the internal database</string>
+    <string name="profile_logout">Logout</string>
 
 
 </resources>
