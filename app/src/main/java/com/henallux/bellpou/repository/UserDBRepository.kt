@@ -10,12 +10,15 @@ import com.henallux.bellpou.model.LoggedUser
 class UserDBRepository {
 
     fun insertUser(user: LoggedUser) {
+
         val userEntity = LoggedUserEntity(user.email, user.password, user.token)
         val oldUser = dao.getUser()
 
-        if (oldUser != null) dao.deleteUserByEmail(oldUser.email)
+        if (oldUser != null)
+            dao.deleteUserByEmail(oldUser.email)
 
         dao.insertUser(userEntity)
+
     }
 
     // Tester ce qu'il se passe s'il n'y a aucun utilisateur dans la DB
@@ -27,18 +30,24 @@ class UserDBRepository {
             throw(NoUserInDBException(App.applicationContext().getString(R.string.no_user_in_db)))
 
         return LoggedUser(user.email, user.password, user.token)
-    }
 
-    companion object {
-        private val dao = BellPouDBImpl.getBellPouDao()
     }
 
     fun removeUser() {
+
         val user = dao.getUser()
 
         if (user == null)
             throw(NoUserInDBException(App.applicationContext().getString(R.string.no_user_in_db)))
 
         dao.deleteUserByEmail(user.email)
+
     }
+
+    companion object {
+
+        private val dao = BellPouDBImpl.getBellPouDao()
+
+    }
+
 }

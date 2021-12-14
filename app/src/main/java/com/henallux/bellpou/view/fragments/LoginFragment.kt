@@ -14,6 +14,7 @@ import com.henallux.bellpou.App
 import com.henallux.bellpou.R
 import com.henallux.bellpou.databinding.FragmentLoginBinding
 import com.henallux.bellpou.view.activities.LoggedActivity
+import com.henallux.bellpou.viewmodel.LoadingActivityViewModel
 import com.henallux.bellpou.viewmodel.LoginViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -45,6 +46,7 @@ class LoginFragment : Fragment() {
         })
 
         return binding.root
+
     }
 
 }

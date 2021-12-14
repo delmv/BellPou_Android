@@ -6,11 +6,14 @@ import com.henallux.bellpou.repository.TrashRepository
 import java.lang.Exception
 
 class MapsViewModel : ViewModel() {
-    fun getTrashesAndLocations(): List<Trash>? {
+
+    fun getTrashesAndLocations(): List<Trash> {
+
         try {
             return TrashRepository().getTrashesAndLocation()
         } catch (e: Exception) {
             throw(e)
         }
+
     }
 }

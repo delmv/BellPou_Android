@@ -24,30 +24,36 @@ class LoginViewModel : ViewModel() {
     fun onButtonLoginClick(view: View) {
 
         CoroutineScope(Dispatchers.IO).launch {
-            val viewgroup = view.rootView
 
+            val viewgroup = view.rootView
             val email = viewgroup.findViewById<EditText>(R.id.login_email_editText).text.toString()
             val password = viewgroup.findViewById<EditText>(R.id.login_password_editText).text.toString()
-
             val form = LoginForm(email, password)
 
             try {
-                val token = UserRepository().login(form)
 
+                val token = UserRepository().login(form)
                 val loggedUser = LoggedUser(email, password, token)
 
                 UserDBRepository().insertUser(loggedUser)
 
                 withContext(Dispatchers.Main) {
+
                     isLogged.value = true
+
                 }
 
             } catch (e: Exception) {
+
                 withContext(Dispatchers.Main) {
+
                     val toast = Toast.makeText(App.applicationContext(), e.message, Toast.LENGTH_SHORT)
                     toast.show()
+
                 }
+
             }
         }
+
     }
 }

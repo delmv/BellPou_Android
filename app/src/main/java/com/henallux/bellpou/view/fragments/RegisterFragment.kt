@@ -22,6 +22,7 @@ class RegisterFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         val binding = FragmentRegisterBinding.inflate(inflater, container, false).apply {
             this.vm = formVM
         }
@@ -32,5 +33,6 @@ class RegisterFragment : Fragment() {
        })
 
         return binding.root
+
     }
 }

@@ -21,4 +21,5 @@ class LoggedActivity : AppCompatActivity() {
         navController = navHostFragment.navController
         findViewById<BottomNavigationView>(R.id.bottom_nav).setupWithNavController(navController)
     }
+
 }

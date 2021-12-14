@@ -1,3 +1,6 @@
 package com.henallux.bellpou.exception
 
-class APIUnknownException(message: String): Exception(message)
+import com.henallux.bellpou.App
+import com.henallux.bellpou.R
+
+class APIUnknownException(message: String = App.applicationContext().getString(R.string.api_unknown_error)): Exception(message)

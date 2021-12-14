@@ -12,48 +12,58 @@ import com.henallux.bellpou.model.User
 import com.henallux.bellpou.remoteDataSource.BellPouAPI.BellPouService
 
 class UserRepository {
+
     fun login(form: LoginForm): String {
 
         val call = BellPouService.userService().login(form)
 
         try {
+
             val response = call.execute()
 
-            if (response.code() == 404) {
+            if (response.code() == 404)
                 throw UserNotFoundException(App.applicationContext().getString(R.string.api_user_not_found))
-            }
 
             return response.body().toString()
+
         } catch (e: Exception) {
 
             Log.w("BellPou API - Trash", e)
 
             if (e::class.simpleName == "SocketTimeoutException") {
-                throw APIConnectionFailedException(App.applicationContext().getString(R.string.api_connection_error))
+                throw APIConnectionFailedException()
             }
 
             if (e::class.simpleName == "UserNotFoundException") {
                 throw e
             }
 
-            throw APIUnknownException(App.applicationContext().getString(R.string.api_unknown_error))
+            throw APIUnknownException()
+
         }
     }
 
     fun register(form: RegisterForm): String {
+
         val call = BellPouService.userService().register(form)
 
         try {
+
             val response = call.execute()
 
             return response.body().toString()
-        } catch (e: Exception) {
-            if (e::class.simpleName == "SocketTimeoutException") {
-                throw APIConnectionFailedException(App.applicationContext().getString(R.string.api_connection_error))
-            }
 
-            throw APIUnknownException(App.applicationContext().getString(R.string.api_unknown_error))
+        } catch (e: Exception) {
+
+            Log.w("BellPou API - Trash", e)
+
+            if (e::class.simpleName == "SocketTimeoutException")
+                throw APIConnectionFailedException()
+
+            throw APIUnknownException()
+
         }
+
     }
 
     fun getUserInformations(): User {
@@ -80,4 +90,5 @@ class UserRepository {
             )
         }
     }
+
 }
