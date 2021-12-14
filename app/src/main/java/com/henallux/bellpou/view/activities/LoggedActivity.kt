@@ -13,6 +13,7 @@ class LoggedActivity : AppCompatActivity() {
     private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_logged)
 
@@ -20,6 +21,7 @@ class LoggedActivity : AppCompatActivity() {
 
         navController = navHostFragment.navController
         findViewById<BottomNavigationView>(R.id.bottom_nav).setupWithNavController(navController)
+
     }
 
 }

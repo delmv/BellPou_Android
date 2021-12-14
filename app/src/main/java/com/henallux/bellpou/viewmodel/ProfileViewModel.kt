@@ -15,21 +15,30 @@ class ProfileViewModel: ViewModel() {
     var user = MutableLiveData<User>()
 
     init {
+
         CoroutineScope(Dispatchers.IO).launch {
 
             val fetchedUser = UserRepository().getUserInformations()
 
             withContext(Dispatchers.Main) {
+
                 user.value = fetchedUser
+
             }
         }
+
     }
 
     fun disconnectUser() {
+
         try {
+
             UserDBRepository().removeUser()
+
         } catch (e: Exception) {
+
             throw e
+
         }
     }
 }

@@ -20,17 +20,19 @@ class QRScanActivity : AppCompatActivity() {
     private lateinit var codeScanner: CodeScanner
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_qrscan)
 
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED) {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED)
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), 123)
-        } else {
+        else
             startScanning()
-        }
+
     }
 
     private fun startScanning() {
+
         val scanner: CodeScannerView = findViewById(R.id.scanner)
 
         codeScanner = CodeScanner(this, scanner)
@@ -43,20 +45,27 @@ class QRScanActivity : AppCompatActivity() {
         codeScanner.isFlashEnabled = false
 
         codeScanner.decodeCallback = DecodeCallback {
+
             runOnUiThread {
                 Toast.makeText(this, "ScanResult: $it", Toast.LENGTH_SHORT).show()
             }
+
         }
 
         codeScanner.errorCallback = ErrorCallback {
+
             runOnUiThread {
                 Toast.makeText(this, "Camera initialization error: ${it.message}", Toast.LENGTH_SHORT).show()
             }
+
         }
 
         scanner.setOnClickListener {
+
             codeScanner.startPreview()
+
         }
+
     }
 
     override fun onRequestPermissionsResult(
@@ -64,30 +73,35 @@ class QRScanActivity : AppCompatActivity() {
         permissions: Array<out String>,
         grantResults: IntArray
     ) {
+
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
         if (requestCode == 123) {
+
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(this, "Camera permission granted", Toast.LENGTH_SHORT).show()
                 startScanning()
             } else {
                 Toast.makeText(this, "Camera permission denied", Toast.LENGTH_SHORT).show()
             }
+
         }
+
     }
 
     override fun onResume() {
+
         super.onResume()
 
-        if (::codeScanner.isInitialized) {
+        if (::codeScanner.isInitialized)
             codeScanner.startPreview()
-        }
+
     }
 
     override fun onPause() {
-        if (::codeScanner.isInitialized) {
+
+        if (::codeScanner.isInitialized)
             codeScanner.releaseResources()
-        }
 
         super.onPause()
     }

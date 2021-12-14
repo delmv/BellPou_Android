@@ -39,7 +39,7 @@ xmlns:tools="http://schemas.android.com/tools">
             app:layout_constraintEnd_toEndOf="parent"
 
             app:lineTitle="@{@string/profile_first_name}"
-            app:lineInfos="@{vm.user.first_name}" />
+            app:lineInfos="@{vm.user.firstName}" />
 
         <include
             android:id="@+id/last_name"
@@ -54,7 +54,7 @@ xmlns:tools="http://schemas.android.com/tools">
             app:layout_constraintEnd_toEndOf="parent"
 
             app:lineTitle="@{@string/profile_last_name}"
-            app:lineInfos="@{vm.user.last_name}" />
+            app:lineInfos="@{vm.user.lastName}" />
 
         <include
             android:id="@+id/birthdate"
@@ -69,7 +69,7 @@ xmlns:tools="http://schemas.android.com/tools">
             app:layout_constraintEnd_toEndOf="parent"
 
             app:lineTitle="@{@string/profile_birthdate}"
-            app:lineInfos="@{vm.user.birth_date}" />
+            app:lineInfos="@{vm.user.birthDate}" />
 
         <include
             android:id="@+id/email"
@@ -113,7 +113,7 @@ xmlns:tools="http://schemas.android.com/tools">
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
 
-            android:text="@{String.valueOf(vm.user.nb_throins)}" />
+            android:text="@{String.valueOf(vm.user.nbThroins)}" />
 
         <Button
             android:id="@+id/logout_button"

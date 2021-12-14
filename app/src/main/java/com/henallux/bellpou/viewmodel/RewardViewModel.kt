@@ -10,7 +10,6 @@ import kotlinx.coroutines.launch
 
 class RewardViewModel: ViewModel() {
 
-    fun getRewards(): List<Reward> {
-        return RewardsRepository().getAllRewards()
-    }
+    fun getRewards(): List<Reward> = RewardsRepository().getAllRewards()
+
 }

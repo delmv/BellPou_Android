@@ -1,3 +1,10 @@
 package com.henallux.bellpou.model
 
-data class User(val first_name: String, val last_name: String, val birth_date: String, val email: String, val nb_throins: Int)
+import com.squareup.moshi.Json
+
+data class User(
+    @field:Json(name = "first_name") val firstName: String,
+    @field:Json(name = "last_name") val lastName: String,
+    @field:Json(name = "birth_date") val birthDate: String,
+    @field:Json(name = "email") val email: String,
+    @field:Json(name = "nb_throins") val nbThroins: Int)

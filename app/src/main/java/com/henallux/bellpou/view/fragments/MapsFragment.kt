@@ -96,7 +96,7 @@ class MapsFragment : Fragment() {
 
             trashes.forEach {
                 val location = LatLng(it.position.coordinate_x, it.position.coordinate_y)
-                val image = if (it.is_full) R.drawable.opened_trash else R.drawable.closed_trash
+                val image = if (it.isFull) R.drawable.opened_trash else R.drawable.closed_trash
 
                 withContext(Dispatchers.Main) {
                     googleMap.addMarker(

@@ -67,27 +67,23 @@ class UserRepository {
     }
 
     fun getUserInformations(): User {
+
         val userLogged = UserDBRepository().getUser()
 
         val call = BellPouService.userService().getUserInformations(token = "Bearer ${userLogged.token}")
 
         try {
+
             val response = call.execute()
 
-            return response.body() ?: throw APIUnknownException(
-                App.applicationContext().getString(R.string.api_unknown_error)
-            )
+            return response.body() ?: throw APIUnknownException()
 
         } catch (e: java.lang.Exception) {
-            if (e::class.simpleName == "SocketTimeoutException") {
-                throw APIConnectionFailedException(
-                    App.applicationContext().getString(R.string.api_connection_error)
-                )
-            }
 
-            throw APIUnknownException(
-                App.applicationContext().getString(R.string.api_unknown_error)
-            )
+            if (e::class.simpleName == "SocketTimeoutException")
+                throw APIConnectionFailedException()
+
+            throw APIUnknownException()
         }
     }
 
