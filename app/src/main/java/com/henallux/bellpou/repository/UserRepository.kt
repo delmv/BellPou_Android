@@ -5,11 +5,14 @@ import com.henallux.bellpou.App
 import com.henallux.bellpou.R
 import com.henallux.bellpou.exception.APIConnectionFailedException
 import com.henallux.bellpou.exception.APIUnknownException
+import com.henallux.bellpou.exception.AlreadyRegisteredException
 import com.henallux.bellpou.exception.UserNotFoundException
 import com.henallux.bellpou.model.LoginForm
 import com.henallux.bellpou.model.RegisterForm
 import com.henallux.bellpou.model.User
 import com.henallux.bellpou.remoteDataSource.BellPouAPI.BellPouService
+import java.net.ConnectException
+import java.net.SocketTimeoutException
 
 class UserRepository {
 
@@ -30,13 +33,11 @@ class UserRepository {
 
             Log.w("BellPou API - Trash", e)
 
-            if (e::class.simpleName == "SocketTimeoutException") {
+            if (e is SocketTimeoutException || e is ConnectException)
                 throw APIConnectionFailedException()
-            }
 
-            if (e::class.simpleName == "UserNotFoundException") {
+            if (e is UserNotFoundException)
                 throw e
-            }
 
             throw APIUnknownException()
 
@@ -51,14 +52,19 @@ class UserRepository {
 
             val response = call.execute()
 
+            if (response.code() == 500) throw AlreadyRegisteredException()
+
             return response.body().toString()
 
         } catch (e: Exception) {
 
             Log.w("BellPou API - Trash", e)
 
-            if (e::class.simpleName == "SocketTimeoutException")
+            if (e is SocketTimeoutException || e is ConnectException)
                 throw APIConnectionFailedException()
+
+            if (e is AlreadyRegisteredException)
+                throw e
 
             throw APIUnknownException()
 
@@ -68,9 +74,9 @@ class UserRepository {
 
     fun getUserInformations(): User {
 
-        val userLogged = UserDBRepository().getUser()
+        val token = UserSharedPreferences.getToken()
 
-        val call = BellPouService.userService().getUserInformations(token = "Bearer ${userLogged.token}")
+        val call = BellPouService.userService().getUserInformations(token = "Bearer $token")
 
         try {
 
@@ -80,7 +86,7 @@ class UserRepository {
 
         } catch (e: java.lang.Exception) {
 
-            if (e::class.simpleName == "SocketTimeoutException")
+            if (e is SocketTimeoutException || e is ConnectException)
                 throw APIConnectionFailedException()
 
             throw APIUnknownException()

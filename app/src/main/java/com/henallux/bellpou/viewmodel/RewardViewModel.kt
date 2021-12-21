@@ -7,9 +7,22 @@ import com.henallux.bellpou.repository.RewardsRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.lang.Exception
 
 class RewardViewModel: ViewModel() {
 
-    fun getRewards(): List<Reward> = RewardsRepository().getAllRewards()
+    fun getRewards(): List<Reward> {
+
+        try {
+
+            return RewardsRepository().getAllRewards()
+
+        } catch (e: Exception) {
+
+            throw e
+
+        }
+
+    }
 
 }

@@ -6,10 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.henallux.bellpou.App
 import com.henallux.bellpou.R
 import com.henallux.bellpou.repository.RewardsRepository
 import com.henallux.bellpou.view.recyclerview.RewardsAdapter
@@ -34,18 +36,32 @@ class RewardsFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_rewards, container, false)
 
         CoroutineScope(Dispatchers.IO).launch() {
-            val rewardsRecycleView = view.findViewById<RecyclerView>(R.id.rewards_recycler_view)
-            val rewards = rewardsVM.getRewards()
-            val rewardsAdapter = RewardsAdapter(rewards)
 
-            if (rewardsRecycleView != null) {
-                withContext(Dispatchers.Main) {
-                    rewardsRecycleView.layoutManager = LinearLayoutManager(activity)
-                    rewardsRecycleView.adapter = rewardsAdapter
+            try {
+
+                val rewardsRecycleView = view.findViewById<RecyclerView>(R.id.rewards_recycler_view)
+                val rewards = rewardsVM.getRewards()
+                val rewardsAdapter = RewardsAdapter(rewards)
+
+                if (rewardsRecycleView != null) {
+                    withContext(Dispatchers.Main) {
+                        rewardsRecycleView.layoutManager = LinearLayoutManager(activity)
+                        rewardsRecycleView.adapter = rewardsAdapter
+                    }
                 }
-            }
-        }
 
+            } catch (e: Exception) {
+
+                withContext(Dispatchers.Main) {
+
+                    val toast = Toast.makeText(App.applicationContext(), e.message, Toast.LENGTH_SHORT)
+                    toast.show()
+
+                }
+
+            }
+
+        }
 
         return view
     }

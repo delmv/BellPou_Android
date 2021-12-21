@@ -23,6 +23,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.henallux.bellpou.App
 import com.henallux.bellpou.R
+import com.henallux.bellpou.view.activities.LoggedActivity
 import com.henallux.bellpou.view.activities.QRScanActivity
 import com.henallux.bellpou.viewmodel.MapsViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -54,7 +55,7 @@ class MapsFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_maps, container, false)
 
         // Check if the user is connected by checking the current activity and let him scan a QR if he's connected.
-        if (activity!!::class.simpleName == "LoggedActivity") {
+        if (activity is LoggedActivity) {
             view.findViewById<FloatingActionButton>(R.id.scanQR).visibility = View.VISIBLE
 
             view.findViewById<FloatingActionButton>(R.id.scanQR).setOnClickListener {

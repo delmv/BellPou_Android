@@ -3,6 +3,7 @@ package com.henallux.bellpou.model
 import com.squareup.moshi.Json
 
 data class Reward(
+    @field:Json(name="id") val id: Integer,
     @field:Json(name="name_fr") val nameFR: String,
     @field:Json(name="name_en") val nameEN: String,
     @field:Json(name="description_fr") val descriptionFR: String,

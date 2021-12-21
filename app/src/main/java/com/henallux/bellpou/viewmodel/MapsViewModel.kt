@@ -10,9 +10,13 @@ class MapsViewModel : ViewModel() {
     fun getTrashesAndLocations(): List<Trash> {
 
         try {
+
             return TrashRepository().getTrashesAndLocation()
+
         } catch (e: Exception) {
+
             throw(e)
+
         }
 
     }

@@ -8,14 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.Navigation
 import com.henallux.bellpou.App
-import com.henallux.bellpou.R
-import com.henallux.bellpou.databinding.FragmentLoginBinding
 import com.henallux.bellpou.databinding.FragmentProfileBinding
-import com.henallux.bellpou.view.activities.LoggedActivity
 import com.henallux.bellpou.view.activities.NotLoggedActivity
-import com.henallux.bellpou.viewmodel.LoginViewModel
 import com.henallux.bellpou.viewmodel.ProfileViewModel
 import kotlinx.coroutines.*
 
@@ -33,6 +28,7 @@ class ProfileFragment : Fragment() {
             this.vm = profileVM
 
             logoutButton.setOnClickListener {
+
                 CoroutineScope(Dispatchers.IO).launch {
 
                     try {
@@ -55,6 +51,27 @@ class ProfileFragment : Fragment() {
         }
 
         binding.lifecycleOwner = viewLifecycleOwner
+
+        CoroutineScope(Dispatchers.IO).launch {
+
+            try {
+
+                profileVM.searchUser()
+
+            } catch (e: Exception) {
+
+                withContext(Dispatchers.Main) {
+
+                    val toast = Toast.makeText(App.applicationContext(), e.message, Toast.LENGTH_SHORT)
+                    toast.show()
+
+                }
+
+            }
+
+        }
+
+
 
         return binding.root
 

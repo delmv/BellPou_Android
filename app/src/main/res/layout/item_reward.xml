@@ -32,7 +32,7 @@
         android:layout_marginBottom="7dp"
 
         android:text="Coca-cola"
-        android:textSize="25sp"
+        android:textSize="22sp"
         />
 
     <TextView
