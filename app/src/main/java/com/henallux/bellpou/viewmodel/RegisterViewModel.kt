@@ -12,7 +12,7 @@ class RegisterViewModel: ViewModel() {
 
         try {
 
-            val token = UserRepository().register(form)
+            val token = UserRepository.register(form)
             UserSharedPreferences.insertUser(LoggedUser(form.email, form.password, token))
 
         } catch (e: Exception) {

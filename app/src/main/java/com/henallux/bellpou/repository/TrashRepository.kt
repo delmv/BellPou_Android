@@ -9,11 +9,11 @@ import com.henallux.bellpou.exception.NoTrashFoundException
 import com.henallux.bellpou.exception.TrashAlreadyScannedException
 import com.henallux.bellpou.model.QR
 import com.henallux.bellpou.model.Trash
-import com.henallux.bellpou.remoteDataSource.BellPouAPI.BellPouService
+import com.henallux.bellpou.remoteDataSource.bellPouAPI.BellPouService
 import java.net.ConnectException
 import java.net.SocketTimeoutException
 
-class TrashRepository {
+object TrashRepository {
 
     fun getTrashesAndLocation() : List<Trash> {
 
@@ -22,6 +22,9 @@ class TrashRepository {
         try {
 
             val response = call.execute()
+
+            if (response.code() == 500)
+                throw APIUnknownException()
 
             if (response.body() == null)
                 throw NoTrashFoundException()
@@ -54,12 +57,13 @@ class TrashRepository {
 
             if (response.code() == 404)
                 throw NoTrashFoundException()
+
             if (response.code() == 500)
                 throw TrashAlreadyScannedException()
 
         } catch (e: Exception) {
 
-            Log.w("BellPou API - Trash", e)
+            Log.w("BellPou API - Trash", e.message.toString())
 
             if (e is SocketTimeoutException || e is ConnectException)
                 throw APIConnectionFailedException()

@@ -1,8 +1,6 @@
 package com.henallux.bellpou.repository
 
 import android.util.Log
-import com.henallux.bellpou.App
-import com.henallux.bellpou.R
 import com.henallux.bellpou.exception.APIConnectionFailedException
 import com.henallux.bellpou.exception.APIUnknownException
 import com.henallux.bellpou.exception.AlreadyRegisteredException
@@ -10,11 +8,11 @@ import com.henallux.bellpou.exception.UserNotFoundException
 import com.henallux.bellpou.model.LoginForm
 import com.henallux.bellpou.model.RegisterForm
 import com.henallux.bellpou.model.User
-import com.henallux.bellpou.remoteDataSource.BellPouAPI.BellPouService
+import com.henallux.bellpou.remoteDataSource.bellPouAPI.BellPouService
 import java.net.ConnectException
 import java.net.SocketTimeoutException
 
-class UserRepository {
+object UserRepository {
 
     fun login(form: LoginForm): String {
 
@@ -25,7 +23,10 @@ class UserRepository {
             val response = call.execute()
 
             if (response.code() == 404)
-                throw UserNotFoundException(App.applicationContext().getString(R.string.api_user_not_found))
+                throw UserNotFoundException()
+
+            if (response.code() == 500)
+                throw APIUnknownException()
 
             return response.body().toString()
 
@@ -82,7 +83,10 @@ class UserRepository {
 
             val response = call.execute()
 
-            return response.body() ?: throw APIUnknownException()
+            if (response.code() == 401 || response.body() == null)
+                throw APIUnknownException()
+
+            return response.body()!!
 
         } catch (e: java.lang.Exception) {
 
@@ -90,6 +94,7 @@ class UserRepository {
                 throw APIConnectionFailedException()
 
             throw APIUnknownException()
+
         }
     }
 

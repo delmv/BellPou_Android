@@ -9,7 +9,7 @@ class ScanQRViewModel: ViewModel() {
 
         try {
 
-            TrashRepository().reportTrash(qrValue)
+            TrashRepository.reportTrash(qrValue)
 
         } catch (e: Exception) {
 

@@ -11,7 +11,7 @@ class MapsViewModel : ViewModel() {
 
         try {
 
-            return TrashRepository().getTrashesAndLocation()
+            return TrashRepository.getTrashesAndLocation()
 
         } catch (e: Exception) {
 

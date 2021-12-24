@@ -1,6 +1,5 @@
-package com.henallux.bellpou.remoteDataSource.BellPouAPI
+package com.henallux.bellpou.remoteDataSource.bellPouAPI
 
-import com.henallux.bellpou.model.LoggedUser
 import com.henallux.bellpou.model.LoginForm
 import com.henallux.bellpou.model.RegisterForm
 import com.henallux.bellpou.model.User

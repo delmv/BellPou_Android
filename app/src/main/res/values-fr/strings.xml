@@ -26,10 +26,10 @@
 
     <!-- Register page -->
     <string name="register_title"><u><b>Enregistrement</b></u></string>
-    <string name="register_first_name_text">Nom : </string>
-    <string name="register_first_name_hint">Entrez votre nom</string>
-    <string name="register_last_name_text">Prénom : </string>
-    <string name="register_last_name_hint">Entrez votre prénom</string>
+    <string name="register_first_name_text">Prénom : </string>
+    <string name="register_first_name_hint">Entrez votre prénom</string>
+    <string name="register_last_name_text">Nom : </string>
+    <string name="register_last_name_hint">Entrez votre nom</string>
     <string name="register_birthdate_text">"Date de naissance : "</string>
     <string name="register_email_text">Email : </string>
     <string name="register_email_hint">Entrez votre email</string>

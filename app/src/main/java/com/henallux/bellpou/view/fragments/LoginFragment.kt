@@ -46,7 +46,9 @@ class LoginFragment : Fragment() {
             }
 
             this.registerButton.setOnClickListener {
+
                 Navigation.findNavController(it).navigate(R.id.register_fragment)
+
             }
 
         }

@@ -15,7 +15,7 @@ class RewardViewModel: ViewModel() {
 
         try {
 
-            return RewardsRepository().getAllRewards()
+            return RewardsRepository.getAllRewards()
 
         } catch (e: Exception) {
 

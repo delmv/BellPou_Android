@@ -10,9 +10,19 @@ class LoginViewModel : ViewModel() {
 
     fun login(form: LoginForm) {
 
-                val token = UserRepository().login(form)
-                val loggedUser = LoggedUser(form.email, form.password, token)
-                UserSharedPreferences.insertUser(loggedUser)
+        try {
+
+            val token = UserRepository.login(form)
+            val loggedUser = LoggedUser(form.email, form.password, token)
+
+            UserSharedPreferences.insertUser(loggedUser)
+
+        } catch (e: Exception) {
+
+            throw e
+
+        }
+
 
     }
 }

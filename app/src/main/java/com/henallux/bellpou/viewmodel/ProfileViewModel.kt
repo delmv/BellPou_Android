@@ -15,13 +15,21 @@ class ProfileViewModel: ViewModel() {
 
     suspend fun searchUser() {
 
-            val fetchedUser = UserRepository().getUserInformations()
+        try {
+
+            val fetchedUser = UserRepository.getUserInformations()
 
             withContext(Dispatchers.Main) {
 
                 user.value = fetchedUser
 
             }
+
+        } catch (e: Exception) {
+
+            throw e
+
+        }
 
     }
 

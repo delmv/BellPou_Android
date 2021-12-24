@@ -96,22 +96,28 @@ class MapsFragment : Fragment() {
             val trashes = mapsVM.getTrashesAndLocations()
 
             trashes.forEach {
+
                 val location = LatLng(it.position.coordinate_x, it.position.coordinate_y)
                 val image = if (it.isFull) R.drawable.opened_trash else R.drawable.closed_trash
 
                 withContext(Dispatchers.Main) {
+
                     googleMap.addMarker(
                         MarkerOptions()
                             .position(location)
                             .icon(activity?.let { bitmapDescriptorFromVector(it.baseContext, image) }))
+
                 }
+
             }
 
         } catch (e: Exception) {
 
             withContext(Dispatchers.Main) {
+
                 val toast = Toast.makeText(App.applicationContext(), e.message, Toast.LENGTH_SHORT)
                 toast.show()
+
             }
 
         }

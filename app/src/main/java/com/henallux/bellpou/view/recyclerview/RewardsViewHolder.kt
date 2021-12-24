@@ -30,7 +30,7 @@ class RewardsViewHolder(
 
                 try {
 
-                    val reward = RewardsRepository().buyReward(BoughtReward(rewardId))
+                    val reward = RewardsRepository.buyReward(BoughtReward(rewardId))
 
                     val message = App.applicationContext().getString(R.string.received_reward) + reward.discountCode
 

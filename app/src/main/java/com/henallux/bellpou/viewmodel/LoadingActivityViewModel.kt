@@ -13,7 +13,7 @@ class LoadingActivityViewModel: ViewModel() {
 
         try {
 
-            PingRepository().ping()
+            PingRepository.ping()
 
         } catch (e: Exception) {
 
@@ -29,7 +29,7 @@ class LoadingActivityViewModel: ViewModel() {
 
             val user = UserSharedPreferences.getUser()
 
-            UserRepository().login(LoginForm(user.email, user.password))
+            UserRepository.login(LoginForm(user.email, user.password))
 
             return true
 

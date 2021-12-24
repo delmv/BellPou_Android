@@ -31,16 +31,8 @@ class ProfileFragment : Fragment() {
 
                 CoroutineScope(Dispatchers.IO).launch {
 
-                    try {
+                    profileVM.disconnectUser()
 
-                        profileVM.disconnectUser()
-
-                    } catch(e: Exception) {
-
-                        val toast = Toast.makeText(App.applicationContext(), e.message, Toast.LENGTH_SHORT)
-                        toast.show()
-
-                    }
                 }
 
                 val intent = Intent(activity, NotLoggedActivity::class.java)
@@ -70,8 +62,6 @@ class ProfileFragment : Fragment() {
             }
 
         }
-
-
 
         return binding.root
 

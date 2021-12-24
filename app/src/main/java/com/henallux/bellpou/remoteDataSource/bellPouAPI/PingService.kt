@@ -1,4 +1,4 @@
-package com.henallux.bellpou.remoteDataSource.BellPouAPI
+package com.henallux.bellpou.remoteDataSource.bellPouAPI
 
 import retrofit2.Call
 import retrofit2.http.GET

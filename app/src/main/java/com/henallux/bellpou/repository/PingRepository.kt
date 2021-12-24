@@ -2,9 +2,9 @@ package com.henallux.bellpou.repository
 
 import android.util.Log
 import com.henallux.bellpou.exception.APIConnectionFailedException
-import com.henallux.bellpou.remoteDataSource.BellPouAPI.BellPouService
+import com.henallux.bellpou.remoteDataSource.bellPouAPI.BellPouService
 
-class PingRepository {
+object PingRepository {
 
     fun ping() {
 
@@ -16,7 +16,7 @@ class PingRepository {
 
         } catch (e: Exception) {
 
-            e.message?.let { Log.w("Ping app", it) }
+            Log.e("Ping", e.message.toString())
 
             throw APIConnectionFailedException()
 

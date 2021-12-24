@@ -9,11 +9,12 @@ import com.henallux.bellpou.exception.TooPoorException
 import com.henallux.bellpou.model.BoughtReward
 import com.henallux.bellpou.model.PersonalReward
 import com.henallux.bellpou.model.Reward
-import com.henallux.bellpou.remoteDataSource.BellPouAPI.BellPouService
+import com.henallux.bellpou.remoteDataSource.bellPouAPI.BellPouService
 import java.net.ConnectException
 import java.net.SocketTimeoutException
 
-class RewardsRepository {
+object RewardsRepository {
+
 
     fun getAllRewards(): List<Reward> {
 
@@ -23,23 +24,19 @@ class RewardsRepository {
 
             val response = call.execute()
 
+            if (response.code() == 500 || response.body() == null)
+                throw APIUnknownException()
 
-            return response.body() ?: throw APIUnknownException(
-                App.applicationContext().getString(R.string.api_unknown_error)
-            )
+            return response.body()!!
 
         } catch (e: Exception) {
 
             Log.e("API ERROR" ,e.message.toString())
 
             if (e is SocketTimeoutException || e is ConnectException)
-                throw APIConnectionFailedException(
-                    App.applicationContext().getString(R.string.api_connection_error)
-                )
+                throw APIConnectionFailedException()
 
-            throw APIUnknownException(
-                App.applicationContext().getString(R.string.api_unknown_error)
-            )
+            throw APIUnknownException()
 
         }
 
@@ -56,8 +53,6 @@ class RewardsRepository {
             val response = call.execute()
 
             if (response.code() == 404) throw TooPoorException()
-
-            println("Something happened")
 
             return response.body() ?: throw APIUnknownException(
                 App.applicationContext().getString(R.string.api_unknown_error)
